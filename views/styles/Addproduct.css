@@ -1,0 +1,39 @@
+.productinner
+{
+    padding-left: 450px;
+    padding-top: 65px;
+}
+
+.producth1
+{
+    margin-top: 2px;;
+    margin-left: 320px;
+    margin-bottom:20px;
+    color: black;
+}
+
+input[type="file"]
+{
+    display: none;
+}
+
+label{
+    color:Black;
+    height: 60px;
+    width: 150px;
+    background-color:white;
+    position: absolute;
+    margin:auto;
+ 
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+
+}
+
+.save
+{
+    margin-left: 200px;
+}

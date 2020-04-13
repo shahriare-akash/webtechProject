@@ -1,0 +1,126 @@
+body
+{
+ 
+  margin: 0;
+  padding: 0;
+ 
+  
+  
+}
+
+.orderh1 {
+    margin-top: 60px;
+    margin-left: 750px;
+    margin-bottom:20px;
+    color: black;
+
+}
+
+
+.add_form
+{ 
+    margin-top: 40%;
+    color:rgb(10, 10, 9);
+    width: 65%;
+    height: 600px;
+	margin-left:200px;
+    padding: 30px;
+    margin: auto;
+    
+    font-size: 20px;
+}
+
+input[type=text] 
+{
+    width:50%;
+    padding: 5px;
+    font-size: 17px;
+}
+input[type=password] {
+    width: 50%;
+    padding: 5px;
+    font-size: 17px;
+}
+
+
+select
+{ 
+    width:50%;
+    padding: 5px;
+    font-size: 17px;
+}
+
+#Store
+{
+    width: 500px;
+}
+
+
+#qty{
+
+    text-align: center;
+   
+
+
+}
+#Rate{
+
+    text-align: center;
+}
+
+#Amount{
+
+    text-align: center;
+    
+}
+
+
+#Qty
+{   width: 80px;
+    margin-left: 20px;
+}
+
+#rate
+{  
+    width: 100px;
+    margin-left: 20px;
+}
+
+#amount
+{   width: 150px;
+    margin-left: 20px;
+}
+ 
+#Gamount
+{
+    width: 180px;
+    
+}
+
+ 
+#vat
+{
+    width: 180px;
+    margin-bottom: 14px;
+}
+ 
+#discount
+{
+    width: 180px;
+}
+ 
+#Namount
+{
+    width: 180px; 
+}
+.addGross
+{
+    margin-right: 100px;
+}
+#save2{
+    background:#228BE6;
+    padding: 10px 30px ;
+    font-size: 18px;
+    margin-left: 850px;
+    margin-top:69px;
+}

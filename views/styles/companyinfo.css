@@ -1,0 +1,25 @@
+.companyinfo
+{
+
+    padding-left: 350px;
+    padding-top: 65px;
+}
+.companyh1
+{
+
+    margin-top: 2px;;
+    margin-left: 320px;
+    margin-bottom:20px;
+    color: black;
+}
+
+.inputradio {
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: 45px;
+    font-size: medium;
+}
+.currency
+{
+    margin-top: 15px;
+}

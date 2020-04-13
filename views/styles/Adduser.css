@@ -1,0 +1,28 @@
+.orderinner
+{
+    padding-left: 350px;
+    padding-top: 65px;
+}
+.userh1
+{
+
+    margin-left: 450px;
+    margin-bottom:20px;
+    
+    color: black;
+}
+.inputradio {
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: 45px;
+    font-size: medium;
+}
+
+.save
+{
+    background:#228BE6;
+    padding: 10px 30px ;
+    font-size: 18px;
+    margin-left: 350px;
+    margin-top:69px;
+}

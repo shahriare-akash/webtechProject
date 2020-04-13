@@ -1,0 +1,36 @@
+.profile_info
+{
+    margin-top: 60px;
+}
+.profile
+{
+    margin-left: 750px;
+}
+.profile_table
+{
+    
+    margin-left: 725px;
+    margin-top: 38px;
+    width: 100%;
+    border-collapse: collapse;
+    
+    
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+    
+  }
+  
+tr:nth-child(even) 
+{
+    background-color: #dddddd;
+}
+
+.green
+{
+    color: limegreen;
+    
+}
