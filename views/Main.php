@@ -1,3 +1,19 @@
+<?php 
+    include_once '../models/database.php';
+    $id=$_COOKIE['name'];
+    function GetUser($id)
+    {
+        $query="SELECT * FROM userinfo WHERE userId=$id";
+        $user=get($query);
+        return $user[0];
+    }
+    
+    $user=GetUser($id);
+    $userName=$user["firstName"].' '.$user["lastName"];
+   
+    
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -10,6 +26,9 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
         integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="styles/Adduser.css">
@@ -20,6 +39,9 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/Addproduct.css">
     <link rel="stylesheet" href="styles/AddGroup.css">
+    <link rel="stylesheet" href="styles/ManageGroup.css">
+    <link rel="stylesheet" href="styles/ManageUser.css">
+    <link rel="stylesheet" href="styles/store.css">
     
 
 
@@ -44,11 +66,16 @@
                             Restaurent</a>
                         <div class="bottom-border pb-2">
                             <img src="images/admin.jpg" width="50" class="rounded-circle mr-3">
-                            <a href="#" class="text-white">Shahriar Akash</a>
+                            <span class="text-white"> 
+                            <?php   
+                               
+                                echo $userName;
+                            ?> 
+                            </span>
                         </div>
 
                         <ul class="menu-ul flex-column mt-4">
-                            <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white p-2 mb-1 sidebar-link current"><i
+                            <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
                             <li id="user-nav"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link ">
                               <i class="fas fa-user text-light fa-lg mr-3"></i>Users<span
@@ -58,7 +85,7 @@
                                         <li class="nav-item"><a href="Adduser.php"
                                                 class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                     class="text-light fa-lg mr-3"></i>Add User</a></li>
-                                        <li class="nav-item"><a href="#"
+                                        <li class="nav-item"><a href="ManageUser.php"
                                                 class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                     class="text-light fa-lg mr-3"></i>Manage User</a></li>
                                     </ul>
@@ -73,18 +100,18 @@
                                     <li class="nav-item"><a href="AddGroup.php"
                                             class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                 class="text-light fa-lg mr-3"></i>Add Group</a></li>
-                                    <li class="nav-item"><a href="#"
+                                    <li class="nav-item"><a href="ManageGroup.php"
                                             class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                 class="text-light fa-lg mr-3"></i>Manage Group</a> </li>
                                 </ul>
                             </div>
                             </li>
-                            <li class="nav-item"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                            <li class="nav-item"><a href="store.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-home text-light fa-lg mr-3"></i>Stores</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                            <li class="nav-item"><a href="tables.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-file-alt text-light fa-lg mr-3"></i>Tables</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                        class="fas fa-table text-light fa-lg mr-3"></i>Catagory</a></li>
+                            <li class="nav-item"><a href="category.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                                        class="fas fa-table text-light fa-lg mr-3"></i>Category</a></li>
                             <li id="product-nav"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-table text-light fa-lg mr-3"></i>Products<span
                                         class="sub-arrow"></span></a>
@@ -93,7 +120,7 @@
                                     <li class="nav-item"><a href="Addproduct.php"
                                             class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                 class="text-light fa-lg mr-3"></i>Add Product</a></li>
-                                    <li class="nav-item"><a href="#"
+                                    <li class="nav-item"><a href="ManageProduct.php"
                                             class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                                 class="text-light fa-lg mr-3"></i>Manage Product</a> </li>
                                 </ul>
@@ -129,9 +156,9 @@
                             </li>
                             <li class="nav-item"><a href="companyinfo.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-file-alt text-light fa-lg mr-3"></i>Company Info</a></li>
-                            <li class="nav-item"><a href="profile.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                            <li class="nav-item"><a href="profile.php?id=<?php echo $id; ?>" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li>
-                            <li class="nav-item"><a href="setting.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                            <li class="nav-item"><a href="setting.php?id=<?php echo $id; ?>" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-wrench text-light fa-lg mr-3"></i>Settings</a></li>
 
                         </ul>
@@ -181,14 +208,40 @@
             Press logout to leave
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Logout </button>
+            <input type="button" style="color:white" class="btn btn-success" data-dismiss="modal" name="stay" value="Stay Here">
+            <input type="submit" style="color:white" class="btn btn-danger" data-dismiss="modal" name="logout" value="Logout">
+
+        <!-- <?php
+            if(isset($_POST["stay"]))
+            {
+            
+            }
+        
+            if(isset($_POST["logout"]))
+            {
+                session_destroy();
+                header("Location:../views/Login.php");
+            }
+
+        ?> -->
           </div>
         </div>
       </div>
     </div>
    
-    
+    <?php
+        if(isset($_POST["stay"]))
+        {
+            
+        }
+        
+        if(isset($_POST["logout"]))
+        {
+            session_destroy();
+            header("Location:../views/Login.php");
+        }
+
+    ?>
     <!-- cards -->
     
     <!-- end of cards -->

@@ -3,12 +3,16 @@
 	$username="root";
 	$password="";
 	$db_name="wt_project";
+	
 	function execute($query)
 	{
 		global $serverName,$username,$password,$db_name;
 		$conn=mysqli_connect($serverName,$username,$password,$db_name);
 		mysqli_query($conn,$query);
 	}
+
+
+
 	function get($query)
 	{
 		$data=array();

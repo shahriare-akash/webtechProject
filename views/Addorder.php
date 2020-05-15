@@ -1,4 +1,4 @@
-<?php include('Main.php');?>
+<?php include_once('Main.php');?>
 <div >
 	<h1 class="orderh1"> <b>Add Order </b>  </h1>
 	<form class="add_form" action="" method="post">
@@ -105,7 +105,7 @@
 
 
 </div>
-<?php include('Adminfooter.php') ?>
+<?php include_once('Adminfooter.php') ?>
 
 
 

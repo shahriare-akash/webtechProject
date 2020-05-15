@@ -1,186 +1,230 @@
+<?php 
+include_once 'Main.php';
+include_once '../controllers/groupsController.php';
+$groups=getAllGroup();
 
-<?php include('Main.php');?>
 
-
-<?php
-include("../models/database.php");
-error_reporting(0);
 ?>
-<?php
 
 
 
-$err_uname="";
-$username="";
-$data="";
-$pass="";
-$err_pass1="";
-$pass3="";
-$query="";
-$err_uname="";
-$fname="";
-$err_fname="";
-$lname="";
-$err_lname="";
-$Pnumber="";
-$err_Pnumber1="";
-$err_Pnumber2="";
-$error="";
-$error1="";
-$confirmpass="";
-$err_cpass1="";
-$err_cpass2="";
-$email2="";
-$err_email1="";
-$email4="";
-$err_email3="";
-$gendervalue="";
-$err_gender="";
-$err_group="";
-$group="";
-$Group="";
-if (isset($_POST['Save'])) {
-    if (empty($_POST['group'])) {
-        $err_group="*Group Required";
-    } elseif ($selectOption = $_POST['group']) {
-        $Group=$selectOption;
-    }
-
-         
-            
-    if (empty($_POST['uname'])) {
-        $err_uname="*Username Required";
-    } else {
-        $username=htmlspecialchars($_POST['uname']);
-        //apatoto user dia bujhassi tui group a boshaia nish
-    }
 
 
-    if (empty($_POST['fname'])) {
-        $err_fname="*firstName Required";
-    } else {
-        $fname=htmlspecialchars($_POST['fname']);
-    }
-            
-    if (empty($_POST['lname'])) {
-        $err_lname="*lastName Required";
-    } else {
-        $lname=htmlspecialchars($_POST['lname']);
-    }
-    if (empty($_POST['email'])) {
-        $err_email1="*Email is Required";
-    } elseif (strpos($_POST['email'], '@')!== false && strpos($_POST['email'], '.')!== false) {
-        $email2=htmlspecialchars($_POST['email']);
-        $email4="*Email is Valid";
-    } else {
-        $err_email3="*Invalid email ,try again";
-    }
-            
-    if (empty($_POST['Pnumber'])) {
-        $err_Pnumber1="*PhoneNo Required";
-    } elseif (!is_numeric($_POST['Pnumber'])) {
-        $err_Pnumber2="*only number input";
-    } else {
-        $Pnumber=htmlspecialchars($_POST['Pnumber']);
-    }
-    if (empty($_POST['pass'])) {
-        $err_pass1="*PhoneNo Required";
-    } else {
-        $pass=htmlspecialchars($_POST['pass']);
-        $pass3="*Password is Valid";
-    }
-            
-    if (empty($_POST['confirmpass'])) {
-        $err_cpass1="*confirm password Required";
-    } elseif (($_POST['pass'])!=($_POST['confirmpass'])) {
-        $err_cpass2="*Invalid  Confirm password";
-    } else {
-        $confirmpass=htmlspecialchars($_POST['confirmpass']);
-    }
-             
-    if (isset($_POST['gender'])) {
-        $gendervalue=htmlspecialchars($_POST['gender']);
-    } else {
-        if (empty($_POST['gendervalue'])) {
-            $err_gender="You must select a gender!";
-        }
-    }
-    
 
 
-    $query="insert into dbsign values('$Group','$username',' $email2','$pass','$confirmpass' ,' $fname',' $lname','$Pnumber','$gendervalue')";
-        
-    $data=mysqli_query($conn, $query);
-    echo $data;
-    
-    if ($data==true) {
-        echo "<script>window.location.href='/RS/ManageUser.php'</script>";
-        // $error = "this is happeing!!!";
-        // header("Location: Dashboard.php?msg=Please+Login+Again.");
-        exit();
-    } else {
-        $error= "Data is not insert";
-    }
-}
 
-
-    
-     ?>
-	
-    <div class='orderinner'>
+<div class='orderinner'>
    
    <h1 class="userh1"> <b>Add User </b> </h1>
-   <form class="user_form" action="" method="post">
+   <form name="userform" onsubmit="return validate_adduser()" class="user_form" action="../controllers/userController.php" method="post">
         <br>  
 
         Group:<br>			
-			<select name="group" class="Group">
-                <option  disabled selected>Select A User.</option>
-<option value="stuff"<?php if ($Group == 'stuff') { ?>selected="selected" <?php } ?>>Staff</option>
-				<option value="members" <?php if ($Group== 'members') { ?>selected="selected" <?php } ?> >Members</option>
-            </select><br> <br>
-           Username <br>  <input id="uname"  type="text" value="<?php echo $username;?>"name="uname" placeholder="Enter Username"><br>
-              <br>   <span style="color:red"><?php echo $err_uname;?></span> <br>
-              
-              
+			<select name="groupId" id="groupId" class="Group">
+                <option disabled selected> Choose </option>
+                <?php 
+                    foreach($groups as $group)
+                    {
+                        echo "<option value='".$group["groupId"]."' >".$group["groupName"]."</option>";
+                    }
+                ?>
+                
+            </select> <br> <span class="text-danger font-weight-bold" id="err_group"></span> <br><br>
 
-           Email <br> <input id="email"  type="text" value="<?php echo $email2;?>"name="email" placeholder="Enter Email">
-                    <br> <br><span  > <?php echo "" ;?></span>
-                    <span style="color:green"><?php echo $email4;?></span>
-                    <span style="color:red"><?php echo $err_email1;?></span>   
-                    <span style="color:red"><?php echo $err_email3;?></span>  <br>
+        First name <br> <input class="input" type="text" id="fname" name="fname"   placeholder="Enter First Name">
+        <br><span class="text-danger font-weight-bold" id="err_fname"></span>
+        
+        <br><br>
+        
+        Last name <br><input class="input" type="text" id="lname" name="lname"  placeholder="Enter Last Name"><br>
+        <span class="text-danger font-weight-bold" id="err_lname"></span><br><br>
+        
+        Email <br> <input class="input" id="email"  type="text" name="email" id="email"  placeholder="Enter Email">
+        <br><span class="text-danger font-weight-bold" id="err_email"></span><br><br>
 				
-                    Password <br>   <input  type="password" value="<?php echo $pass;?>"  name="pass" placeholder="Enter Password"> <br> 
-                    <br> 	<span style="color:red"><?php echo $err_pass1;?></span> 
-					<span style="color:green"><?php echo $pass3;?></span> 
-					<br> 
-                    Confirm Password <br>   <input type="password"  value="<?php echo $confirmpass;?>"  name="confirmpass" placeholder="Confirm Password" required> <br> 
-					<br><span style="color:red"><?php echo $err_cpass1;?></span> 
-					<span style="color:red"><?php echo $err_cpass2;?></span> <br>
-					
-		            First name <br>    <input class="input" type="text" value="<?php echo $fname;?>" name="fname" placeholder="Enter First Name"><br>
-                    <br>   <span style="color:red"><?php echo $err_fname;?></span> <br>
-		           	Last name <br>   <input class="input" type="text" value="<?php echo $lname;?>"name="lname" placeholder="Enter Last Name"><br>
-                       <br>   <span style="color:red"><?php echo $err_lname;?></span> <br>
-		           	Phone No <br> <input class="input"  type="text" value="<?php echo $Pnumber;?>" name="Pnumber"placeholder="Enter Phone Number" ><br>
-                       <br><span style="color:red"><?php echo $err_Pnumber1;?></span> 
-				   	<span style="color:red"><?php echo $err_Pnumber2;?></span> <br>
+        Password <br>   <input  type="password" name="pass" id="pass"  placeholder="Enter Password"> <br> 
+        <span class="text-danger font-weight-bold" id="err_pass"></span><br><br> 
+        
+        Confirm Password <br>   <input type="password" name="confirmpass" id="confirmpass" placeholder="Confirm Password"  > <br> 
+		<span class="text-danger font-weight-bold" id="err_cpass"></span><br><br>
+       
+        Phone No <br> <input class="input"  type="text" name="pnumber" id="pnumber"  placeholder="Enter Phone Number" ><br>
+        <span class="text-danger font-weight-bold" id="err_number"></span><br><br>
                       
-                    Gender <br>
-<input class="inputradio" type="radio" name="gender" value="male" <?php if ($gendervalue == 'male') { ?>checked <?php } ?>> Male <input  class="inputradio" type="radio" name="gender" value="female" <?php if ($gendervalue == 'female') { ?>checked <?php } ?>> Female
-    				<br><span style="color:red"><?php echo $err_gender;?></span> 
-					   
-                       <br> <span style="color:red"><?php echo $error;?></span> 
-                       <br> <span style="color:red"><?php echo $error1;?></span> 
+        Gender <br>
+        <input class="inputradio" type="radio" name="gender" id="gender" value="Male" > Male <input  class="inputradio" type="radio" id="gender" name="gender" value="Female"  > Female
+        <br><span class="text-danger font-weight-bold" id="err_gender"></span><br> 
+		
+        
 					
-					
-                       <p>	<input class="save" type="submit" name="Save" value="Save"></p>
+        <p>	<input type="submit" name="add_user" id="submit" class="save" value="Save"></p> <br>
+        
 
                       
-		</form>
+	</form>
+
+    <script type="text/javascript">
+        function validate_adduser()
+        {   
+            group=document.getElementById("groupId").value;
+            firstName=document.getElementById("fname").value;
+            lastName=document.getElementById("lname").value;
+            email=document.getElementById("email").value;
+            pass=document.getElementById("pass").value;
+            cpass=document.getElementById("confirmpass").value;
+            number=document.getElementById("pnumber").value;
+            gender=document.getElementById("gender").checked;
+            var valid=true;
+            if(group=="Choose")
+            {
+                document.getElementById("err_group").innerHTML="*Required Group Name!";
+                valid= false; 
+            }
+
+            else
+            {
+                document.getElementById("err_group").innerHTML="";
+            }
+
+            if(firstName=="")
+            {
+                document.getElementById("err_fname").innerHTML="*Required Firstname!";
+                valid= false;    
+            
+            }
+            else if(!isNaN(firstName))
+            {
+                document.getElementById("err_fname").innerHTML="*Name contain letters only!";
+                valid= false; 
+            }
+            else if((firstName.length<=2))
+            {
+                document.getElementById("err_fname").innerHTML="*Invalid Name";
+                valid= false;
+            }
+
+
+            else
+            {
+                document.getElementById("err_fname").innerHTML="";
+            }
+
+        
+
+            if(lastName=="")
+            {
+                document.getElementById("err_lname").innerHTML="*Required Lastname!";
+                valid= false;
+            
+            }
+
+            else if(!isNaN(lastName))
+            {
+                document.getElementById("err_lname").innerHTML="*Name contain letters only!";
+                valid= false; 
+            }
+            else if((lastName.length<=2))
+            {
+                document.getElementById("err_lname").innerHTML="*Invalid Name!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_lname").innerHTML="";
+            }
+
+
+
+            if((email.includes("@")) && (email.includes(".")))
+            {
+                document.getElementById("err_email").innerHTML="";
+            }
+
+            else
+            {
+                document.getElementById("err_email").innerHTML="*Invalid Email!";
+                valid= false;
+            } 
+
+            if(pass=="")
+            {
+                document.getElementById("err_pass").innerHTML="*Required Password!";
+                valid= false;
+            
+            }
+            else if((pass.length<=4) || (pass.length>=50))
+            {   
+                document.getElementById("err_pass").innerHTML="*Invalid Password!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_pass").innerHTML="";
+            }
+
+
+            if(cpass=="")
+            {
+                document.getElementById("err_cpass").innerHTML="*Field cannot be empty!";
+                valid= false;
+            
+            }
+            else if(cpass!=pass)
+            {
+                document.getElementById("err_cpass").innerHTML="*Password Doesn't match!";
+                valid= false;
+            }
+            else
+            {
+                document.getElementById("err_cpass").innerHTML="";
+            }
+
+            if(number=="")
+            {
+                document.getElementById("err_number").innerHTML="*Required Phone Number!";
+                valid= false;
+            }
+
+            else if(isNaN(number))
+            {
+                document.getElementById("err_number").innerHTML="*Invalid Phone Number!";
+                valid= false;
+            }
+            else if(number.length>11)
+            {
+                document.getElementById("err_number").innerHTML="*Invalid Phone Number!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_number").innerHTML="";
+            }
+
+            if(gender=="" || gender==NULL)
+            {
+                document.getElementById("err_gender").innerHTML="*Select a Gender";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_gender").innerHTML="";
+            }
+
+            return valid;
+        }
+        
+</script>
+
+
+
+    
    
         </div>
-<?php include('Adminfooter.php') ?>
+<?php include_once('Adminfooter.php') ?>
 
 
 

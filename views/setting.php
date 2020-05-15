@@ -1,197 +1,184 @@
-<?php include('Main.php');?>
+<?php 
+    include_once 'Main.php';
+    include_once '../controllers/settingController.php';
+	
+    $userId=$_GET['id'];
+    
+	$user=getUinfo($userId);
 
+	
+?>
 
-<?php    
-$err_uname="";
-$uname="";
-$err_fname="";
-$fname="";
-$err_lname="";
-$lname="";
-$err_email1="";
-$email2="";
-$err_email3="";
-$email4="";
-$err_Pnumber1="";
-$err_Pnumber2="";
-$err_Pnumber3="";
-$Pnumber="";
-$err_pass1="";
-$err_pass2="";
-$pass="";
-$pass3="";
-$err_cpass1="";
-$err_cpass2="";
-$cpass="";
-$cpass3="";
-$err_gender="";
-$gendervalue;
+<script>
+    function valid()
+    {
+        firstName=document.getElementById("fname").value;
+        lastName=document.getElementById("lname").value;
+        email=document.getElementById("email").value;
+        pass=document.getElementById("pass").value;
+        cpass=document.getElementById("confirmpass").value;
+        number=document.getElementById("pnumber").value;
 
-if(isset($_POST['Save']))
-		{  	
-            
-            if(empty($_POST['uname']))
-			{
-				$err_uname="*Username Required";
-			}
-			else
-			{			
-				$uname=htmlspecialchars($_POST['uname']);
-			
-			}
-            
-            if(empty($_POST['fname']))
-			{
-				$err_fname="*firstName Required";
-			}
-			else
-			{			
-				$fname=htmlspecialchars($_POST['fname']);
-			
-			}
-			
-				if(empty($_POST['lname']))
-			{
-				$err_lname="*lastName Required";
-			}
-			else
-			{			
-				$lname=htmlspecialchars($_POST['lname']);
-			
-			}
-			if(empty($_POST['email']))
-			{
-				$err_email1="*Email is Required";
-			}
-			
+        var valid=true;
 
-            else if (strpos($_POST['email'], '@')!== false && strpos($_POST['email'], '.')!== false) 
+            if(firstName=="")
             {
-                $email2=htmlspecialchars($_POST['email']);
-			    $email4="*Email is Valid";
-		    }
-			else
-			{		
-				$err_email3="*Invalid email ,try again";
-			
-			}
-			
-			if(empty($_POST['Pnumber']))
-			{
-				$err_Pnumber1="*PhoneNo Required";
-			}
-			elseif(!is_numeric($_POST['Pnumber']))
-			{
-				$err_Pnumber2="*only number input";
-			}
-			elseif(strlen($_POST['Pnumber'])!=11)
-			{
-				$err_Pnumber3="*only input 11 digits number";
-			}
-			
-			else
-			{			
-				$Pnumber=htmlspecialchars($_POST['Pnumber']);
-			
-			}
-            if(empty($_POST['pass']))
-			{
-				$err_pass1="*Lave empty if you dont want to change";
-			}
-            elseif(strlen($_POST['pass'])!=6)
-			{
-				$err_pass2="*only input 6 digits number";
-			}
-			else
-			{			
-				$pass=htmlspecialchars($_POST['pass']);
-			  $pass3="*Password is Valid";
-
-			
-			}
-			if(empty($_POST['confirmpass']))
-			{
-				$err_cpass1="*confirm password Required";
-			}
-			elseif(($_POST['pass'])!=($_POST['confirmpass']))
-			{
-				$err_cpass2="*Invalid  Confirm password";
-			}
-			else
-			{			
-				
-			  $cpass3="*Confirm Password is Valid";
-
-			
-			}
+                document.getElementById("err_fname").innerHTML="*Required Firstname!";
+                valid= false;    
             
-            if(isset($_POST['gender']))
+            }
+            else if(!isNaN(firstName))
             {
-				$gendervalue=htmlspecialchars($_POST['gender']); 
+                document.getElementById("err_fname").innerHTML="*Name contain letters only!";
+                valid= false; 
+            }
+            else if((firstName.length<=2))
+            {
+                document.getElementById("err_fname").innerHTML="*Invalid Name";
+                valid= false;
+            }
+
+
+            else
+            {
+                document.getElementById("err_fname").innerHTML="";
+            }
+
+        
+
+            if(lastName=="")
+            {
+                document.getElementById("err_lname").innerHTML="*Required Lastname!";
+                valid= false;
+            
+            }
+
+            else if(!isNaN(lastName))
+            {
+                document.getElementById("err_lname").innerHTML="*Name contain letters only!";
+                valid= false; 
+            }
+            else if((lastName.length<=2))
+            {
+                document.getElementById("err_lname").innerHTML="*Invalid Name!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_lname").innerHTML="";
+            }
+
+
+
+            if((email.includes("@")) && (email.includes(".")))
+            {
+                document.getElementById("err_email").innerHTML="";
+            }
+
+            else
+            {
+                document.getElementById("err_email").innerHTML="*Invalid Email!";
+                valid= false;
+            } 
+
+            if(pass=="")
+            {
+                document.getElementById("err_pass").innerHTML="*Required Password!";
+                valid= false;
+            
+            }
+            else if((pass.length<=4) || (pass.length>=50))
+            {   
+                document.getElementById("err_pass").innerHTML="*Invalid Password!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_pass").innerHTML="";
+            }
+
+
+            if(cpass=="")
+            {
+                document.getElementById("err_cpass").innerHTML="*Field cannot be empty!";
+                valid= false;
+            
+            }
+            else if(cpass!=pass)
+            {
+                document.getElementById("err_cpass").innerHTML="*Password Doesn't match!";
+                valid= false;
             }
             else
-            {	
-				if(empty($_POST['gendervalue']))
-				{
-					$err_gender="You must select a gender!"; 
-				}
+            {
+                document.getElementById("err_cpass").innerHTML="";
             }
-            
-        
 
-        }
-        
-        
+            if(number=="")
+            {
+                document.getElementById("err_number").innerHTML="*Required Phone Number!";
+                valid= false;
+            }
 
-?>
+            else if(isNaN(number))
+            {
+                document.getElementById("err_number").innerHTML="*Invalid Phone Number!";
+                valid= false;
+            }
+            else if(number.length>11)
+            {
+                document.getElementById("err_number").innerHTML="*Invalid Phone Number!";
+                valid= false;
+            }
+
+            else
+            {
+                document.getElementById("err_number").innerHTML="";
+            }
+
+            return valid;
+
+    }
+</script>
 
 <div class="setting_info">
 <h1 class="settingh1">Update Information </h1>
 
 <div>
 
-<form  action="" method="post">
-       
-    Username <br> <input id="uname"  type="text" value="<?php echo $uname;?>"name="uname" ><br>
-    <span style="color:red"><?php echo $err_uname;?></span>  <br> 
+<form  action="../controllers/settingController.php" onsubmit="return valid()" method="post">
+    <input type="hidden" name="abc" value= "<?php echo $userId;?>">
+	First name <br> <input class="input" type="text" name="fname" id="fname" value="<?php echo $user['firstName'];?>"> <br>
+    <span class="text-danger font-weight-bold" id="err_fname"></span><br>
+                     
     
-    Email <br> <input id="email"  type="text" value="<?php echo $email2;?>"name="email" ><br>
-    <span  > <?php echo "" ;?></span>
-    <span style="color:green"><?php echo $email4;?></span>
-    <span style="color:red"><?php echo $err_email1;?></span>   
-    <span style="color:red"><?php echo $err_email3;?></span><br>
+    Last name <br><input class="input" type="text" name="lname" id="lname" value="<?php echo $user['lastName'];?>" ><br>
+    <span class="text-danger font-weight-bold" id="err_lname"></span><br>
+				    
+    
+    Email <br> <input id="email"  type="text" name="email" id="email" value="<?php echo $user['email'];?>" ><br>
+    <span class="text-danger font-weight-bold" id="err_email"></span><br>
+    
 
-    First name <br> <input class="input" type="text" value="<?php echo $fname;?>" name="fname" ><br>
-                    <span style="color:red"><?php echo $err_fname;?></span> <br> 
     
-    Last name <br><input class="input" type="text" value="<?php echo $lname;?>"name="lname" ><br>
-				    <span style="color:red"><?php echo $err_lname;?></span> <br> 
     
-    Phone No <br> <input class="input"  type="text" value="<?php echo $Pnumber;?>" name="Pnumber" ><br>
-				 	<span style="color:red"><?php echo $err_Pnumber1;?></span> 
-				   	<span style="color:red"><?php echo $err_Pnumber3;?></span> <br>
+    Phone No <br> <input class="input"  type="text" name="Pnumber" id="pnumber" value="<?php echo $user['phoneNo'];?>"  ><br>
+    <span class="text-danger font-weight-bold" id="err_number"></span><br>
+				 	
 		  
-    Password <br> <input  type="password" value="<?php echo $pass;?>"  name="pass"> <br> 
-					<span style="color:blue"><?php echo $err_pass1;?></span> 
-					<span style="color:green"><?php echo $pass3;?></span> 
-					<span style="color:red"><?php echo $err_pass2;?></span> <br> 
+    Password <br> <input  type="password" name="pass" id="pass" value="<?php echo $user['password'];?>"> <br>
+    <span class="text-danger font-weight-bold" id="err_pass"></span><br> 
+					
     
-    Confirm Password <br> <input type="password"  value="<?php echo $cpass;?>"  name="confirmpass"> <br> 
-					<span style="color:red"><?php echo $err_cpass1;?></span> 
-					<span style="color:red"><?php echo $err_cpass2;?></span>
-					<span style="color:red"><?php echo $cpass;?></span>
-					<span style="color:green"><?php echo $cpass3;?></span> <br> 
-    
-    Gender <br> <br><input class="inputradio" type="radio" name="gender" value="<?php echo $gendervalue;?>"> Male <input  class="inputradio" type="radio" name="gender" value="<?php echo $gendervalue;?>"> Female
-    <br><span style="color:red"><?php echo $err_gender;?></span> <br >
-           
-           
-           
-           
-    <p><input class="save" type="submit" name="Save" value="Save"></p> <br><br><br>
+    Confirm Password <br> <input type="password"  name="confirmpass" id="confirmpass" > <br>
+    <span class="text-danger font-weight-bold" id="err_cpass"></span><br> 
+	
+    <p><input class="save" type="submit" name="updateInfo" value="Save"></p> <br><br><br>
 			
 </form>
 </div>
 </div>
 
-<?php include('Adminfooter.php') ?>
+<?php include_once('Adminfooter.php') ?>

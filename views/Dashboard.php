@@ -1,6 +1,8 @@
+<?php
+ 
+  include_once 'Main.php';
+?>
 
-
-<?php include('Main.php');?>
 
 
 <section>
@@ -82,4 +84,4 @@
       </div>
     </section>
 
-    <?php include('Adminfooter.php') ?>
+    <?php include_once('Adminfooter.php') ?>
