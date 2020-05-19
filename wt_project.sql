@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 07:16 AM
+-- Generation Time: May 19, 2020 at 07:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `wt_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cartId` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `totalprice` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89,7 +102,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productId`, `productName`, `price`, `productDescription`, `categoryId`, `storeId`, `status`) VALUES
-(1, 'Chicken Masala', 350, 'Chicken tikka masala is a dish of chunks of roasted marinated chicken (chicken tikka) in a spiced curry sauce.  ', 1, 1, 'Active');
+(1, 'Chicken Masala', 350, 'Chicken tikka masala is a dish of chunks of roasted marinated chicken (chicken tikka) in a spiced curry sauce.  ', 1, 1, 'Active'),
+(3, 'Beef Kala Bhuna', 450, '  Authentic Meat', 13, 1, 'Active');
 
 -- --------------------------------------------------------
 
@@ -131,7 +145,8 @@ INSERT INTO `storetable` (`tableId`, `tableName`, `status`) VALUES
 (1, 'Table 1', 'Active'),
 (2, 'Table 2', 'Active'),
 (3, 'Table 3', 'Active'),
-(5, 'Table 4', 'Active');
+(5, 'Table 4', 'Active'),
+(7, 'Table 5', 'Deactivate');
 
 -- --------------------------------------------------------
 
@@ -176,11 +191,19 @@ CREATE TABLE `userinfo` (
 --
 
 INSERT INTO `userinfo` (`userid`, `firstName`, `lastName`, `email`, `password`, `groupId`, `gender`, `phoneNo`) VALUES
-(1, 'Shahriar', 'Akash', 'sadmanshahriare.akash@gmail.com', '', 1, 'Male', 1727770124);
+(1, 'Shahriar', 'Akash', 'sadmanshahriare.akash@gmail.com', '123', 1, 'Male', 1727770124),
+(2, 'Rabeya', 'Bushra', 'bushrakhan007@gmail.com', '12345', 2, 'Female', 1613727673);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cartId`),
+  ADD KEY `productId` (`productId`);
 
 --
 -- Indexes for table `category`
@@ -232,6 +255,12 @@ ALTER TABLE `userinfo`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -247,7 +276,7 @@ ALTER TABLE `companyinfo`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -259,7 +288,7 @@ ALTER TABLE `store`
 -- AUTO_INCREMENT for table `storetable`
 --
 ALTER TABLE `storetable`
-  MODIFY `tableId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tableId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `usergroup`
@@ -271,11 +300,17 @@ ALTER TABLE `usergroup`
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`);
 
 --
 -- Constraints for table `products`
