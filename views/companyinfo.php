@@ -128,27 +128,27 @@
     <h1 class="companyh1"> Company Information</h1>
 <div>
 
-<form class="product_form" onsubmit="return valid()" action="../controllers/companyinfoController.php" method="post">
+<form onsubmit="return valid()" action="../controllers/companyinfoController.php" method="post">
     <input type="hidden" name="id" value= "<?php echo $cId;?>">
-    Company Name <br> <input type="text" name="cname" id="cname" value="<?php echo "$name"; ?>"> <br><span class="text-danger font-weight-bold" id="err_cname"></span> <br> 
+    Company Name <br> <input class="form form-control" type="text" name="cname" id="cname" value="<?php echo "$name"; ?>"> <br><span class="text-danger font-weight-bold" id="err_cname"></span> <br> 
 	<b>Charge Amount (%)</b> <br> 
-    <input  type="text" name="amount" id="amountId" value="<?php echo $amount;?>"> <br> 
+    <input class="form form-control" type="text" name="amount" id="amountId" value="<?php echo $amount;?>"> <br> 
     <span class="text-danger font-weight-bold" id="err_amount"></span><br>
     
     <b>Vat Charge (%)</b> <br> 
-    <input  type="text" name="vat" id="vatId" value="<?php echo $vat; ?>" > <br> 
+    <input class="form form-control" type="text" name="vat" id="vatId" value="<?php echo $vat; ?>" > <br> 
     <span class="text-danger font-weight-bold" id="err_vat"></span><br>
 	
-    Address <br><input  type="text" name="address" id="address" value="<?php echo $address; ?>"> <br> 
+    <b>Address </b><br><input class="form form-control" type="text" name="address" id="address" value="<?php echo $address; ?>"> <br> 
     <span class="text-danger font-weight-bold" id="err_add"></span> <br>
 	
-    Phone No <br> <input  type="text" name="phnNumber" id="phnNumber" value="<?php echo $number; ?>"> <br> 
+    <b>Phone No </b><br> <input class="form form-control" type="text" name="phnNumber" id="phnNumber" value="<?php echo $number; ?>"> <br> 
     <span class="text-danger font-weight-bold" id="err_num"></span><br>
     
-    Country<br> <input  type="text" name="country" id="country" value="<?php echo $country; ?>"> <br> 
+    <b>Country</b><br> <input class="form form-control"  type="text" name="country" id="country" value="<?php echo $country; ?>"> <br> 
     <span class="text-danger font-weight-bold" id="err_cun"></span><br>
-    
-    <select  class="currency" name="currency" id="currency"  > <br> <br>
+    <b> Currency </b> <br>
+    <select  class="form form-control" class="currency" name="currency" id="currency"  > <br> <br>
         <option  selected> <?php echo $currency; ?></option>
 		<option>USD</option>
         <option>Pound</option>
@@ -156,8 +156,9 @@
     </select>
     <br><span class="text-danger font-weight-bold" id="err_curr"></span><br>
           
-    Message   <br>  <textarea name="message" rows="6" cols="64"> <?php echo $message; ?> </textarea> <br>
-    <span><input class="save" type="submit" name="save" value="Save"></span><br><br> <br>
+    <b>Message</b>   <br>  <textarea class="form form-control" name="message" rows="6" cols="64"> <?php echo $message; ?> </textarea> <br>
+    
+    <div align="center"><span><input class="btn btn-primary" type="submit" name="save" value="Save"></span></div><br><br> <br>
 			
 </form>
 </div>

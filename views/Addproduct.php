@@ -92,23 +92,23 @@
     }
 </script>
 
-<div class='productinner'>
-    <h1 class="producth1"> <b>Add Product </b> </h1>
+<div class='orderinner'>
+    <h1 class="userh1"> <b>Add Product </b> </h1>
     
-    <form class="product_form" onsubmit="return valid()" action="../controllers/productsController.php" method="post">
+    <form  onsubmit="return valid()" action="../controllers/productsController.php" method="post">
         
-        <b> Product Name </b> <br> <input type="text" name="pname" id="pname" placeholder="Enter Product Name"> <br>
+        <b> Product Name </b> <br> <input class="form form-control" type="text" name="pname" id="pname" placeholder="Enter Product Name"> <br>
         <span class="text-danger font-weight-bold" id="err_pname"></span>
         <br>
 
 
-        <b> Price </b> <br> <input type="text" name="price" id="price" placeholder="Enter Price"> <br> 
+        <b> Price </b> <br> <input class="form form-control" type="text" name="price" id="price" placeholder="Enter Price"> <br> 
         <span class="text-danger font-weight-bold" id="err_price"></span>
         <br>
-        <b> Description </b> <br>  <textarea id="des" name="description" rows="6" cols="60">  </textarea> <br>
+        <b> Description </b> <br>  <textarea class="form form-control" id="des" name="description" rows="6" cols="60">  </textarea> <br>
         <br>
         <b> Category </b> <br> 
-        <select name="categoryId" class="category" id="category">
+        <select class="form form-control" name="categoryId" class="category" id="category">
 			<option  disbled selected>Select Category</option>
             <?php 
                 foreach($categories as $category)
@@ -120,7 +120,7 @@
         </select><br><span class="text-danger font-weight-bold" id="err_cat"></span> <br>
 
         <b> Store </b> <br> 
-        <select name="storeId" id="store" class="store">
+        <select class="form form-control" name="storeId" id="store" class="store">
             <option  disabled selected>Select Store</option>
             <?php 
                 foreach($stores as $store)
@@ -132,13 +132,14 @@
         </select><br> <span class="text-danger font-weight-bold" id="err_store"></span><br> 
 
         <b> Status </b> <br> 
-        <select name="status" class="active" id="status">
+        <select class="form form-control" name="status" class="active" id="status">
             <option disabled selected>Choose</option>
             <option>Active</option>
 			<option>Deactive</option>
         </select><br><span class="text-danger font-weight-bold" id="err_status"></span><br>
-
-        <span><input class="save" type="submit" name="add_product" value="Save"></span> <br><br><br>
+        <div align="center">
+        <span><input class="btn btn-primary" type="submit" name="add_product" value="Add Product"></span>
+        </div <br><br><br>
 
 
     </form> 

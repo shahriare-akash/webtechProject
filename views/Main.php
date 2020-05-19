@@ -32,7 +32,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="styles/Adduser.css">
-    <link rel="stylesheet" href="styles/Addorder.css">
     <link rel="stylesheet" href="styles/companyinfo.css">
     <link rel="stylesheet" href="styles/profile.css">
     <link rel="stylesheet" href="styles/setting.css">
@@ -125,35 +124,13 @@
                                                 class="text-light fa-lg mr-3"></i>Manage Product</a> </li>
                                 </ul>
                             </div>
-                            </li>
-                            <li id="Order-nav"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                        class="fas fa-table text-light fa-lg mr-3"></i>Orders<span
-                                        class="sub-arrow"></span></a>
-                            <div class="sub-menu-1">
-                                <ul>
-                                    <li class="nav-item"><a href="Addorder.php"
-                                            class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                                class="text-light fa-lg mr-3"></i>Add Order</a></li>
-                                    <li class="nav-item"><a href="#"
-                                            class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                                class="text-light fa-lg mr-3"></i>Manage Order</a> </li>
-                                </ul>
-                            </div>
-                            </li>
-                            <li id="Report-nav"><a href="#" class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                        class="fas fa-chart-line text-light fa-lg mr-3"></i>Reports<span
-                                        class="sub-arrow"></span></a>
-                            <div class="sub-menu-1">
-                                <ul>
-                                    <li class="nav-item"><a href="#"
-                                            class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                                class="text-light fa-lg mr-3"></i>Product Wise</a></li>
-                                    <li class="nav-item"><a href="#"
-                                            class="nav-link text-white p-2 mb-1 sidebar-link"><i
-                                                class="text-light fa-lg mr-3"></i>Total Store Wise</a> </li>
-                                </ul>
-                            </div>
-                            </li>
+                          
+                            <li class="nav-item"><a href="menu.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                                        class="fas fa-file-alt text-light fa-lg mr-3"></i>Menu</a></li>
+                            <li class="nav-item"><a href="cart.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
+                                        class="fas fa-file-alt text-light fa-lg mr-3"></i>Cart</a></li>
+
+
                             <li class="nav-item"><a href="companyinfo.php" class="nav-link text-white p-2 mb-1 sidebar-link"><i
                                         class="fas fa-file-alt text-light fa-lg mr-3"></i>Company Info</a></li>
                             <li class="nav-item"><a href="profile.php?id=<?php echo $id; ?>" class="nav-link text-white p-2 mb-1 sidebar-link"><i
@@ -174,16 +151,12 @@
                             <div class="col-md-5">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control search-input" placeholder="Search....">
-                                        <button type="button" class="btn btn-white search-button"><i
-                                                class="fas fa-search text-danger"></i></button>
+                                                              
                                     </div>
                                 </form>
                             </div>
                             <div class="col-md-3">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i
-                                                class="fas fa-bell text-muted fa-lg"></i></a></li>
                                     <li class="nav-item ml-md-auto"><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
                   </ul>
                 </div>
@@ -208,40 +181,14 @@
             Press logout to leave
           </div>
           <div class="modal-footer">
-            <input type="button" style="color:white" class="btn btn-success" data-dismiss="modal" name="stay" value="Stay Here">
-            <input type="submit" style="color:white" class="btn btn-danger" data-dismiss="modal" name="logout" value="Logout">
+            <a href="#" class="btn btn-success" data-dismiss="modal" name="stay">Stay Here</a>
+            <a href="Login.php" class="btn btn-danger" name="logout">Logout</a>
 
-        <!-- <?php
-            if(isset($_POST["stay"]))
-            {
-            
-            }
-        
-            if(isset($_POST["logout"]))
-            {
-                session_destroy();
-                header("Location:../views/Login.php");
-            }
-
-        ?> -->
           </div>
         </div>
       </div>
     </div>
    
-    <?php
-        if(isset($_POST["stay"]))
-        {
-            
-        }
-        
-        if(isset($_POST["logout"]))
-        {
-            session_destroy();
-            header("Location:../views/Login.php");
-        }
-
-    ?>
     <!-- cards -->
     
     <!-- end of cards -->

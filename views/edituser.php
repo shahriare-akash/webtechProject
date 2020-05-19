@@ -19,7 +19,7 @@
         <input type="hidden" name="uid" value= "<?php echo $uId;?>">
 
         Group:<br>			
-			<select name="groupId" id="groupId" class="Group">
+			<select name="groupId" id="groupId" class="form-control">
                 <option disabled selected> <?php echo $grp['groupName'];?> </option>
                 <?php 
                     foreach($groups as $group)
@@ -30,25 +30,27 @@
                 
             </select> <br><br><br>
 
-        First name <br> <input class="input" type="text" id="fname" name="fname"   placeholder="Enter First Name" value="<?php echo $user['firstName'];?>">
+        First name <br> <input class="form-control" type="text" id="fname" name="fname"   placeholder="Enter First Name" value="<?php echo $user['firstName'];?>">
         <br><span class="text-danger font-weight-bold" id="err_fname"></span>
         
         <br><br>
         
-        Last name <br><input class="input" type="text" id="lname" name="lname"  placeholder="Enter Last Name" value="<?php echo $user['lastName'];?>"><br>
+        Last name <br><input class="form-control" type="text" id="lname" name="lname"  placeholder="Enter Last Name" value="<?php echo $user['lastName'];?>"><br>
         <span class="text-danger font-weight-bold" id="err_lname"></span><br><br>
         
-        Email <br> <input class="input" id="email"  type="text" name="email" id="email"  placeholder="Enter Email" value="<?php echo $user['email'];?>">
+        Email <br> <input class="form-control" id="email"  type="text" name="email" id="email"  placeholder="Enter Email" value="<?php echo $user['email'];?>">
         <br><span class="text-danger font-weight-bold" id="err_email"></span><br><br>
 				
        
-        Phone No <br> <input class="input"  type="text" name="pnumber" id="pnumber"  placeholder="Enter Phone Number" value="<?php echo $user['phoneNo'];?>" ><br>
+        Phone No <br> <input class="form-control"  type="text" name="pnumber" id="pnumber"  placeholder="Enter Phone Number" value="<?php echo $user['phoneNo'];?>" ><br>
         <span class="text-danger font-weight-bold" id="err_number"></span><br><br>
        
 		
         
-					
-        <p>	<input type="submit" name="add_user" id="submit" class="save" value="Save"></p> <br>
+		<div align="center">			
+        <p>	<input type="submit" name="add_user" class="btn btn-primary" value="Edit User"></p> <br>
+        </div>
+        <br><br><br>
         
 
                       

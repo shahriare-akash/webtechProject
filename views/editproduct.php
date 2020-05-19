@@ -93,23 +93,23 @@
     }
 </script>
 
-<div class='productinner'>
-    <h1 class="producth1"> <b>Edit Product </b> </h1>
+<div class='orderinner'>
+    <h1 class="userh1"> <b>Edit Product </b> </h1>
     
-    <form class="product_form" onsubmit="return valid()" action="../controllers/productsController.php" method="post">
+    <form  onsubmit="return valid()" action="../controllers/productsController.php" method="post">
         <input type="hidden" name="id" value= "<?php echo $_GET['id'];?>">  
-        <b> Product Name </b> <br> <input type="text" name="pname" id="pname" placeholder="Enter Product Name" value="<?php echo $product['productName'];?>"> <br>
+        <b> Product Name </b> <br> <input class="form form-control" type="text" name="pname" id="pname" placeholder="Enter Product Name" value="<?php echo $product['productName'];?>"> <br>
         <span class="text-danger font-weight-bold" id="err_pname"></span>
         <br>
 
 
-        <b> Price </b> <br> <input type="text" name="price" id="price" placeholder="Enter Price" value="<?php echo $product['price'];?>"> <br> 
+        <b> Price </b> <br> <input class="form form-control" type="text" name="price" id="price" placeholder="Enter Price" value="<?php echo $product['price'];?>"> <br> 
         <span class="text-danger font-weight-bold" id="err_price"></span>
         <br>
-        <b> Description </b> <br>  <textarea id="des" name="description" rows="6" cols="60"> <?php echo $product['productDescription'];?>  </textarea> <br>
+        <b> Description </b> <br>  <textarea class="form form-control" id="des" name="description" rows="6" cols="60"> <?php echo $product['productDescription'];?>  </textarea> <br>
         <br>
         <b> Category </b> <br> 
-        <select name="categoryId" class="category" id="category">
+        <select class="form form-control" name="categoryId" class="category" id="category">
 			<option  disbled selected>
                 <?php 
                     $cat=getCategory($product['categoryId']);
@@ -126,7 +126,7 @@
         </select><br><span class="text-danger font-weight-bold" id="err_cat"></span> <br>
 
         <b> Store </b> <br> 
-        <select name="storeId" id="store" class="store">
+        <select class="form form-control" name="storeId" id="store" class="store">
             <option  disabled selected>
                 <?php
                     $s=getStore($product['storeId']);
@@ -143,13 +143,14 @@
         </select><br> <span class="text-danger font-weight-bold" id="err_store"></span><br> 
 
         <b> Status </b> <br> 
-        <select name="status" class="active" id="status">
+        <select class="form form-control" name="status" class="active" id="status">
             <option disabled selected><?php echo $product['status'];?></option>
             <option>Active</option>
 			<option>Deactive</option>
         </select><br><span class="text-danger font-weight-bold" id="err_status"></span><br>
-
-        <span><input class="save" type="submit" name="update_product" value="Save"></span> <br><br><br>
+        <div align="center">
+        <span><input class="btn btn-primary" type="submit" name="update_product" value="Save"></span>
+        </div> <br><br><br>
 
 
     </form> 

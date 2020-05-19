@@ -44,22 +44,23 @@
 <div class="storeinner">
     <h1 class="storeh1"> <b><Table></Table> Table Information </b> </h1>
 
-<form class="product_form" onsubmit="return valid()" action="../controllers/tableController.php" method="post">
+<form onsubmit="return valid()" action="../controllers/tableController.php" method="post">
     <input type="hidden" name="id" value= "<?php echo $_GET['id'];?>">  
 
      <b> Table Name </b><br> 
-     <input type="text" name="name" id="name" placeholder="Enter Table Name" value="<?php echo $table["tableName"];?>"> <br>
+     <input class="form form-control" type="text" name="name" id="name" placeholder="Enter Table Name" value="<?php echo $table["tableName"];?>"> <br>
      <span class="text-danger font-weight-bold" id="err_name"></span>
      <br>
      <b>Status </b> <br> 
-        <select name="status" class="active" id="status">
+        <select class="form form-control" name="status" class="active" id="status">
 			<option disabled selected><?php echo $table["status"];?></option>
 			<option>Active</option>
             <option>Deactivate</option>
         </select><br>
         <span class="text-danger font-weight-bold" id="err_status"></span><br>
-    
-	<input class="storesave" style="color:White" type="submit" name="update_table" value="Add Table"></p>
+    <div align="center">
+	<input class="btn btn-primary" type="submit" name="update_table" value="Edit Table"></p>
+    </div> <br><br><br>
 </form>
 
 </div>

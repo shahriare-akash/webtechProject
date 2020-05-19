@@ -18,6 +18,13 @@
         return $tables;
     }
 
+    function getAllTables()
+    {
+        $query="SELECT * FROM storeTable where status='Active'";
+        $tables=get($query);
+        return $tables;
+    }
+
     function getTable($id)
     {
         $query="SELECT * FROM storeTable where tableId=$id";

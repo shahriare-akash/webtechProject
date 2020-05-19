@@ -10,20 +10,21 @@
 <form class="product_form" onsubmit="return valid()" action="../controllers/storeController.php" method="post">
     <input type="hidden" name="id" value= "<?php echo $_GET['id'];?>">
     <b> Store Name </b><br>
-    <input type="text" name="name" id="name" placeholder="Enter Store Name" value="<?php echo $store['storeName'];?>"> <br>
+    <input class="form form-control" type="text" name="name" id="name" placeholder="Enter Store Name" value="<?php echo $store['storeName'];?>"> <br>
     <span class="text-danger font-weight-bold" id="err_name"></span>
     <br>
 
     <b>Status </b> <br>
-    <select name="status" id="status">
+    <select class="form form-control" name="status" id="status">
 	    <option disabled selected><?php echo $store['status'];?></option>
 		<option>Active</option>
         <option>Deactivate</option>
     </select><br>
     <span class="text-danger font-weight-bold" id="err_stat"></span>
         <br>
-    
-	<input class="storesave" style="color:White" type="submit" id="add" name="update_store" value="Add Store"></p>
+    <div align="center">
+	<input class="btn btn-primary" type="submit" id="add" name="update_store" value="Add Store"></p>
+    </div> <br><br><br>
 </form>
 <script>
     function valid()

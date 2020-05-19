@@ -45,18 +45,19 @@
 <div class="storeinner">
     <h1 class="storeh1"> <b><Table></Table> Category </b> </h1>
 
-    <form class="product_form" action="../controllers/categoryController.php" onsubmit="return validate()" method="post">
-        <b> Category Name </b><br> <input type="text" name="name" id="name" placeholder="Enter Category Name"> <br>
+    <form  action="../controllers/categoryController.php" onsubmit="return validate()" method="post">
+        <b> Category Name </b><br> <input class="form form-control" type="text" name="name" id="name" placeholder="Enter Category Name"> <br>
         <span class="text-danger font-weight-bold" id="err_name"></span><br>
         <b>Status </b> <br> 
-        <select name="status" class="active" id="status">
+        <select class="form form-control" name="status" class="active" id="status">
 			<option disabled selected>Choose</option>
 			<option>Active</option>
             <option>Deactivate</option>
         </select><br><span class="text-danger font-weight-bold" id="err_stat"></span><br>
     
-	<input class="storesave" style="color:White" type="submit" name="add_category" value="Add Category" ></p>
+	<input class="btn btn-primary" type="submit" name="add_category" value="Add Category" >
     </form>
+    <br>
     
     <div align="left">
 			

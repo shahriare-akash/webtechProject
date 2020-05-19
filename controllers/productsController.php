@@ -24,6 +24,7 @@
         return $product[0];
     }
 
+
     function insertProduct()
     {
         $name=$_POST["pname"];

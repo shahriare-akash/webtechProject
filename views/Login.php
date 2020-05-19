@@ -34,7 +34,7 @@
 
 		if(!$has_error)
 		{
-			$query="SELECT userid FROM userinfo WHERE userid='$uid' AND password='$pass'";
+			$query="SELECT * FROM userinfo WHERE userid='$uid' AND password='$pass'";
 			$result=get($query);
 			
 			if(count($result)>0)
@@ -43,7 +43,16 @@
 				//session_start();
 				//$_SESSION['loggedinuser'] = $uname;
 				setcookie('name',$uid,time()+3600*60);
-				header("Location:Main.php");
+				if($rs["groupId"]==1)
+				{
+					header("Location:Dashboard.php");
+				}
+
+				else
+				{
+					header("Location:staffDashboard.php");
+				}
+				
 			}
 			else
 			{

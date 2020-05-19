@@ -1,30 +1,31 @@
 <?php include_once('Main.php');?>
 
-<div class='groupinner'>
-    <h1 class="grouph1"> <b>Add Group </b> </h1>
+<div class='orderinner'>
+    <h1 class="userh1"> <b>Add Group </b> </h1>
     
-<form class="product_form" onsubmit="return valid()" action="../controllers/groupsController.php" method="post">
+<form onsubmit="return valid()" action="../controllers/groupsController.php" method="post">
     <b> Group Name </b> <br>
-    <input type="text" id="gname" name="gname" placeholder="Enter Group Name"> 
+    <input class="form form-control" type="text" id="gname" name="gname" placeholder="Enter Group Name"> 
     <br><span class="text-danger font-weight-bold" id="err_grp"></span>
     <br>
     
     
     <b> Description </b> <br>  
-    <textarea id="description" type="text" name="description" cols="51" rows="6"></textarea>
+    <textarea class="form form-control" id="description" type="text" name="description" cols="51" rows="6"></textarea>
     <br><span class="text-danger font-weight-bold" id="err_des"></span>
     <br>
 
     <b> Status </b> 
     <br> 
-    <select id="status" name="status">
+    <select class="form form-control" id="status" name="status">
 		<option disabled selected>Choose</option>
 		<option>Active</option>
         <option>Deactivate</option>
     </select><br><span class="text-danger font-weight-bold" id="err_stat"></span><br>
     
-
-    <span><input id="save1" type="submit" name="add_group" value="Save"></span> <br><br><br>
+<div align="center">
+    <span><input class="btn btn-primary" type="submit" name="add_group" value="Save"></span> <br><br><br>
+</div> <br><br><br>
 </form>
 
 <script>

@@ -18,13 +18,13 @@
         return $category;
     }
 
+
     function getCategory($id)
     {
         $query="SELECT * FROM category where categoryId=$id";
         $category=get($query);
         return $category[0];
     }
-
 
 
     function insertCategory()

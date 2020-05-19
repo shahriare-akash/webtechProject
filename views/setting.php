@@ -150,32 +150,33 @@
 
 <form  action="../controllers/settingController.php" onsubmit="return valid()" method="post">
     <input type="hidden" name="abc" value= "<?php echo $userId;?>">
-	First name <br> <input class="input" type="text" name="fname" id="fname" value="<?php echo $user['firstName'];?>"> <br>
+	First name <br> <input class="form form-control" class="input" type="text" name="fname" id="fname" value="<?php echo $user['firstName'];?>"> <br>
     <span class="text-danger font-weight-bold" id="err_fname"></span><br>
                      
     
-    Last name <br><input class="input" type="text" name="lname" id="lname" value="<?php echo $user['lastName'];?>" ><br>
+    Last name <br><input class="form form-control" class="input" type="text" name="lname" id="lname" value="<?php echo $user['lastName'];?>" ><br>
     <span class="text-danger font-weight-bold" id="err_lname"></span><br>
 				    
     
-    Email <br> <input id="email"  type="text" name="email" id="email" value="<?php echo $user['email'];?>" ><br>
+    Email <br> <input class="form form-control" id="email"  type="text" name="email" id="email" value="<?php echo $user['email'];?>" ><br>
     <span class="text-danger font-weight-bold" id="err_email"></span><br>
     
 
     
     
-    Phone No <br> <input class="input"  type="text" name="Pnumber" id="pnumber" value="<?php echo $user['phoneNo'];?>"  ><br>
+    Phone No <br> <input class="form form-control"  type="text" name="Pnumber" id="pnumber" value="<?php echo $user['phoneNo'];?>"  ><br>
     <span class="text-danger font-weight-bold" id="err_number"></span><br>
 				 	
 		  
-    Password <br> <input  type="password" name="pass" id="pass" value="<?php echo $user['password'];?>"> <br>
+    Password <br> <input class="form form-control" type="password" name="pass" id="pass" value="<?php echo $user['password'];?>"> <br>
     <span class="text-danger font-weight-bold" id="err_pass"></span><br> 
 					
     
-    Confirm Password <br> <input type="password"  name="confirmpass" id="confirmpass" > <br>
+    Confirm Password <br> <input class="form form-control" type="password"  name="confirmpass" id="confirmpass" > <br>
     <span class="text-danger font-weight-bold" id="err_cpass"></span><br> 
-	
-    <p><input class="save" type="submit" name="updateInfo" value="Save"></p> <br><br><br>
+	<div align="center">
+    <p><input class="btn btn-primary" type="submit" name="updateInfo" value="Save"></p>
+    </div> <br><br><br>
 			
 </form>
 </div>

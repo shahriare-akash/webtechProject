@@ -8,11 +8,6 @@ $groups=getAllGroup();
 
 
 
-
-
-
-
-
 <div class='orderinner'>
    
    <h1 class="userh1"> <b>Add User </b> </h1>
@@ -20,7 +15,7 @@ $groups=getAllGroup();
         <br>  
 
         Group:<br>			
-			<select name="groupId" id="groupId" class="Group">
+			<select name="groupId" id="groupId" class="form-control">
                 <option disabled selected> Choose </option>
                 <?php 
                     foreach($groups as $group)
@@ -31,24 +26,24 @@ $groups=getAllGroup();
                 
             </select> <br> <span class="text-danger font-weight-bold" id="err_group"></span> <br><br>
 
-        First name <br> <input class="input" type="text" id="fname" name="fname"   placeholder="Enter First Name">
+        First name <br> <input class="form-control" type="text" id="fname" name="fname"   placeholder="Enter First Name">
         <br><span class="text-danger font-weight-bold" id="err_fname"></span>
         
         <br><br>
         
-        Last name <br><input class="input" type="text" id="lname" name="lname"  placeholder="Enter Last Name"><br>
+        Last name <br><input class="form-control" type="text" id="lname" name="lname"  placeholder="Enter Last Name"><br>
         <span class="text-danger font-weight-bold" id="err_lname"></span><br><br>
         
-        Email <br> <input class="input" id="email"  type="text" name="email" id="email"  placeholder="Enter Email">
+        Email <br> <input class="form-control" id="email"  type="text" name="email" id="email"  placeholder="Enter Email">
         <br><span class="text-danger font-weight-bold" id="err_email"></span><br><br>
 				
-        Password <br>   <input  type="password" name="pass" id="pass"  placeholder="Enter Password"> <br> 
+        Password <br>   <input  class="form-control" type="password" name="pass" id="pass"  placeholder="Enter Password"> <br> 
         <span class="text-danger font-weight-bold" id="err_pass"></span><br><br> 
         
-        Confirm Password <br>   <input type="password" name="confirmpass" id="confirmpass" placeholder="Confirm Password"  > <br> 
+        Confirm Password <br>   <input class="form-control" type="password" name="confirmpass" id="confirmpass" placeholder="Confirm Password"  > <br> 
 		<span class="text-danger font-weight-bold" id="err_cpass"></span><br><br>
        
-        Phone No <br> <input class="input"  type="text" name="pnumber" id="pnumber"  placeholder="Enter Phone Number" ><br>
+        Phone No <br> <input class="form-control" class="input"  type="text" name="pnumber" id="pnumber"  placeholder="Enter Phone Number" ><br>
         <span class="text-danger font-weight-bold" id="err_number"></span><br><br>
                       
         Gender <br>
@@ -56,11 +51,12 @@ $groups=getAllGroup();
         <br><span class="text-danger font-weight-bold" id="err_gender"></span><br> 
 		
         
-					
-        <p>	<input type="submit" name="add_user" id="submit" class="save" value="Save"></p> <br>
+		<div align="center">			
+            <span><br><br><input class="btn btn-primary" type="submit" name="add_user" value="Add User"></span><br>
+        </div>
         
+        <br><br><br><br>
 
-                      
 	</form>
 
     <script type="text/javascript">
@@ -203,17 +199,7 @@ $groups=getAllGroup();
                 document.getElementById("err_number").innerHTML="";
             }
 
-            if(gender=="" || gender==NULL)
-            {
-                document.getElementById("err_gender").innerHTML="*Select a Gender";
-                valid= false;
-            }
-
-            else
-            {
-                document.getElementById("err_gender").innerHTML="";
-            }
-
+         
             return valid;
         }
         

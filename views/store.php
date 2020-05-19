@@ -10,21 +10,21 @@
 
 <form class="product_form" onsubmit="return valid()" action="../controllers/storeController.php" method="post">
     <b> Store Name </b><br>
-    <input type="text" name="name" id="name" placeholder="Enter Store Name"> <br>
+    <input class="form form-control" type="text" name="name" id="name" placeholder="Enter Store Name"> <br>
     <span class="text-danger font-weight-bold" id="err_name"></span>
     <br>
 
     <b>Status </b> <br>
-    <select name="status" id="status">
+    <select class="form form-control" name="status" id="status">
 	    <option disabled selected>Choose</option>
 		<option>Active</option>
         <option>Deactivate</option>
     </select><br>
     <span class="text-danger font-weight-bold" id="err_stat"></span>
-        <br>
     
-	<input class="storesave" style="color:White" type="submit" id="add" name="add_store" value="Add Store"></p>
+	<input class="btn btn-primary"  type="submit" id="add" name="add_store" value="Add Store">
 </form>
+<br>
 <script>
     function valid()
     {

@@ -44,18 +44,20 @@
 <div class="storeinner">
     <h1 class="storeh1"> <b><Table></Table> Category </b> </h1>
 
-    <form class="product_form" action="../controllers/categoryController.php" onsubmit="return validate()" method="post">
+    <form action="../controllers/categoryController.php" onsubmit="return validate()" method="post">
     <input type="hidden" name="id" value= "<?php echo $_GET['id'];?>">
-        <b> Category Name </b><br> <input type="text" name="name" id="name" placeholder="Enter Category Name" value="<?php echo $category['categoryName'];?>"> <br>
+        <b> Category Name </b><br> <input class="form form-control" type="text" name="name" id="name" placeholder="Enter Category Name" value="<?php echo $category['categoryName'];?>"> <br>
         <span class="text-danger font-weight-bold" id="err_name"></span><br>
         <b>Status </b> <br> 
-        <select name="status" class="active" id="status">
+        <select class="form form-control" name="status" class="active" id="status">
 			<option disabled selected><?php echo $category['status'];?></option>
 			<option>Active</option>
             <option>Deactivate</option>
         </select><br><span class="text-danger font-weight-bold" id="err_stat"></span><br>
-    
-	    <input class="storesave" style="color:White" type="submit" name="update_category" value="Update" ></p>
+    <div align="center">
+	    <input class="btn btn-primary" style="color:White" type="submit" name="update_category" value="Update" ></p>
+    </div>
+    <br><br><br>
     </form>
 
 </div>

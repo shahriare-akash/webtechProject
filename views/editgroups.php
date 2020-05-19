@@ -4,33 +4,34 @@
     $group=getGroup($_GET['id']);
 ?>
 
-<div class='groupinner'>
-    <h1 class="grouph1"> <b>Add Group </b> </h1>
+<div class='orderinner'>
+    <h1 class="userh1"> <b>Add Group </b> </h1>
     
 <form class="product_form" onsubmit="return valid()" action="../controllers/groupsController.php" method="post">
     <input type="hidden" name="id" value= "<?php echo $_GET['id'];?>">
     
     <b> Group Name </b> <br>
-    <input type="text" id="gname" name="gname" placeholder="Enter Group Name" value="<?php echo $group['groupName'];?>"> 
+    <input class="form form-control" type="text" id="gname" name="gname" placeholder="Enter Group Name" value="<?php echo $group['groupName'];?>"> 
     <br><span class="text-danger font-weight-bold" id="err_grp"></span>
     <br>
     
     
     <b> Description </b> <br>  
-    <textarea id="description" type="text" name="description" cols="51" rows="6"><?php echo $group['description'];?></textarea> 
+    <textarea class="form form-control" id="description" type="text" name="description" cols="51" rows="6"><?php echo $group['description'];?></textarea> 
     <br><span class="text-danger font-weight-bold" id="err_des"></span>
     <br>
 
     <b> Status </b> 
     <br> 
-    <select id="status" name="status" class="active">
+    <select class="form form-control" id="status" name="status" class="active">
 		<option disabled selected><?php echo $group['status'];?></option>
 		<option>Active</option>
         <option>Deactivate</option>
     </select><br><span class="text-danger font-weight-bold" id="err_stat"></span><br>
     
-
-    <span><input id="save1" type="submit" name="update_group" value="Save"></span> <br><br><br>
+<div align="center">
+    <span><input class="btn btn-primary" type="submit" name="update_group" value="Save"></span>
+</div> <br><br><br>
 </form>
 
 <script>
